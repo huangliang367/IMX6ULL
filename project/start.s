@@ -8,3 +8,4 @@ _start:
 
     ldr sp, =0x80200000
     b main
+    

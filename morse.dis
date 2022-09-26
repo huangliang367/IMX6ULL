@@ -1,0 +1,399 @@
+
+morse.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+87800000 <_start>:
+87800000:	e10f0000 	mrs	r0, CPSR
+87800004:	e3c0001f 	bic	r0, r0, #31
+87800008:	e3800013 	orr	r0, r0, #19
+8780000c:	e129f000 	msr	CPSR_fc, r0
+87800010:	e51fd000 	ldr	sp, [pc, #-0]	; 87800018 <_start+0x18>
+87800014:	ea0000db 	b	87800388 <__main_from_arm>
+87800018:	80200000 	eorhi	r0, r0, r0
+8780001c:	00001e41 	andeq	r1, r0, r1, asr #28
+87800020:	61656100 	cmnvs	r5, r0, lsl #2
+87800024:	01006962 	tsteq	r0, r2, ror #18
+87800028:	00000014 	andeq	r0, r0, r4, lsl r0
+8780002c:	412d3705 	teqmi	sp, r5, lsl #14
+87800030:	070a0600 	streq	r0, [sl, -r0, lsl #12]
+87800034:	09010841 	stmdbeq	r1, {r0, r6, fp}
+87800038:	00040a02 	andeq	r0, r4, r2, lsl #20
+
+8780003c <main>:
+8780003c:	b508      	push	{r3, lr}
+8780003e:	f000 f895 	bl	8780016c <clock_enable>
+87800042:	f000 f84f 	bl	878000e4 <beep_init>
+87800046:	f000 f8f7 	bl	87800238 <led_init>
+8780004a:	f240 0070 	movw	r0, #112	; 0x70
+8780004e:	f2c8 7080 	movt	r0, #34688	; 0x8780
+87800052:	f000 f971 	bl	87800338 <morse_xfer>
+87800056:	f241 3088 	movw	r0, #5000	; 0x1388
+8780005a:	f000 f8bb 	bl	878001d4 <delay_ms>
+8780005e:	f240 007c 	movw	r0, #124	; 0x7c
+87800062:	f2c8 7080 	movt	r0, #34688	; 0x8780
+87800066:	f000 f967 	bl	87800338 <morse_xfer>
+8780006a:	2000      	movs	r0, #0
+8780006c:	bd08      	pop	{r3, pc}
+8780006e:	bf00      	nop
+87800070:	6c6c6568 	cfstr64vs	mvdx6, [ip], #-416	; 0xfffffe60
+87800074:	726f776f 	rsbvc	r7, pc, #29097984	; 0x1bc0000
+87800078:	0000646c 	andeq	r6, r0, ip, ror #8
+8780007c:	6e617568 	cdpvs	5, 6, cr7, cr1, cr8, {3}
+87800080:	61696c67 	cmnvs	r9, r7, ror #24
+87800084:	0000676e 	andeq	r6, r0, lr, ror #14
+87800088:	3a434347 	bcc	888d0dac <morse_code+0x10d0a1c>
+8780008c:	694c2820 	stmdbvs	ip, {r5, fp, sp}^
+87800090:	6f72616e 	svcvs	0x0072616e
+87800094:	43434720 	movtmi	r4, #14112	; 0x3720
+87800098:	392e3420 	stmdbcc	lr!, {r5, sl, ip, sp}
+8780009c:	3130322d 	teqcc	r0, sp, lsr #4
+878000a0:	31302e37 	teqcc	r0, r7, lsr lr
+878000a4:	2e342029 	cdpcs	0, 3, cr2, cr4, cr9, {1}
+878000a8:	00342e39 	eorseq	r2, r4, r9, lsr lr
+878000ac:	00003441 	andeq	r3, r0, r1, asr #8
+878000b0:	61656100 	cmnvs	r5, r0, lsl #2
+878000b4:	01006962 	tsteq	r0, r2, ror #18
+878000b8:	0000002a 	andeq	r0, r0, sl, lsr #32
+878000bc:	412d3705 	teqmi	sp, r5, lsl #14
+878000c0:	070a0600 	streq	r0, [sl, -r0, lsl #12]
+878000c4:	09010841 	stmdbeq	r1, {r0, r6, fp}
+878000c8:	12040a02 	andne	r0, r4, #8192	; 0x2000
+878000cc:	15011404 	strne	r1, [r1, #-1028]	; 0x404
+878000d0:	18031701 	stmdane	r3, {r0, r8, r9, sl, ip}
+878000d4:	1a011901 	bne	878464e0 <morse_code+0x46150>
+878000d8:	1c031b02 	stcne	11, cr1, [r3], {2}
+878000dc:	22021e01 	andcs	r1, r2, #1, 28
+878000e0:	00000001 	andeq	r0, r0, r1
+
+878000e4 <beep_init>:
+878000e4:	210c      	movs	r1, #12
+878000e6:	2250      	movs	r2, #80	; 0x50
+878000e8:	f24c 0304 	movw	r3, #49156	; 0xc004
+878000ec:	b430      	push	{r4, r5}
+878000ee:	f2c0 2129 	movt	r1, #553	; 0x229
+878000f2:	2505      	movs	r5, #5
+878000f4:	f241 04b0 	movw	r4, #4272	; 0x10b0
+878000f8:	f2c0 2229 	movt	r2, #553	; 0x229
+878000fc:	f2c0 230a 	movt	r3, #522	; 0x20a
+87800100:	2002      	movs	r0, #2
+87800102:	600d      	str	r5, [r1, #0]
+87800104:	6014      	str	r4, [r2, #0]
+87800106:	6018      	str	r0, [r3, #0]
+87800108:	bc30      	pop	{r4, r5}
+8780010a:	4770      	bx	lr
+
+8780010c <beep_on>:
+8780010c:	f44f 4340 	mov.w	r3, #49152	; 0xc000
+87800110:	f2c0 230a 	movt	r3, #522	; 0x20a
+87800114:	681a      	ldr	r2, [r3, #0]
+87800116:	f022 0202 	bic.w	r2, r2, #2
+8780011a:	601a      	str	r2, [r3, #0]
+8780011c:	4770      	bx	lr
+8780011e:	bf00      	nop
+
+87800120 <beep_off>:
+87800120:	f44f 4340 	mov.w	r3, #49152	; 0xc000
+87800124:	f2c0 230a 	movt	r3, #522	; 0x20a
+87800128:	681a      	ldr	r2, [r3, #0]
+8780012a:	f042 0202 	orr.w	r2, r2, #2
+8780012e:	601a      	str	r2, [r3, #0]
+87800130:	4770      	bx	lr
+87800132:	bf00      	nop
+87800134:	00003441 	andeq	r3, r0, r1, asr #8
+87800138:	61656100 	cmnvs	r5, r0, lsl #2
+8780013c:	01006962 	tsteq	r0, r2, ror #18
+87800140:	0000002a 	andeq	r0, r0, sl, lsr #32
+87800144:	412d3705 	teqmi	sp, r5, lsl #14
+87800148:	070a0600 	streq	r0, [sl, -r0, lsl #12]
+8780014c:	09010841 	stmdbeq	r1, {r0, r6, fp}
+87800150:	12040a02 	andne	r0, r4, #8192	; 0x2000
+87800154:	15011404 	strne	r1, [r1, #-1028]	; 0x404
+87800158:	18031701 	stmdane	r3, {r0, r8, r9, sl, ip}
+8780015c:	1a011901 	bne	87846568 <morse_code+0x461d8>
+87800160:	1c031b02 	stcne	11, cr1, [r3], {2}
+87800164:	22021e01 	andcs	r1, r2, #1, 28
+87800168:	00000001 	andeq	r0, r0, r1
+
+8780016c <clock_enable>:
+8780016c:	b4f0      	push	{r4, r5, r6, r7}
+8780016e:	f244 0078 	movw	r0, #16504	; 0x4078
+87800172:	f244 0768 	movw	r7, #16488	; 0x4068
+87800176:	f244 066c 	movw	r6, #16492	; 0x406c
+8780017a:	f244 0570 	movw	r5, #16496	; 0x4070
+8780017e:	f244 0474 	movw	r4, #16500	; 0x4074
+87800182:	f244 017c 	movw	r1, #16508	; 0x407c
+87800186:	f44f 4281 	mov.w	r2, #16512	; 0x4080
+8780018a:	f04f 33ff 	mov.w	r3, #4294967295	; 0xffffffff
+8780018e:	f2c0 270c 	movt	r7, #524	; 0x20c
+87800192:	f2c0 260c 	movt	r6, #524	; 0x20c
+87800196:	f2c0 250c 	movt	r5, #524	; 0x20c
+8780019a:	f2c0 240c 	movt	r4, #524	; 0x20c
+8780019e:	f2c0 200c 	movt	r0, #524	; 0x20c
+878001a2:	f2c0 210c 	movt	r1, #524	; 0x20c
+878001a6:	f2c0 220c 	movt	r2, #524	; 0x20c
+878001aa:	603b      	str	r3, [r7, #0]
+878001ac:	6033      	str	r3, [r6, #0]
+878001ae:	602b      	str	r3, [r5, #0]
+878001b0:	6023      	str	r3, [r4, #0]
+878001b2:	6003      	str	r3, [r0, #0]
+878001b4:	bcf0      	pop	{r4, r5, r6, r7}
+878001b6:	600b      	str	r3, [r1, #0]
+878001b8:	6013      	str	r3, [r2, #0]
+878001ba:	4770      	bx	lr
+
+878001bc <delay_1ms>:
+878001bc:	b082      	sub	sp, #8
+878001be:	f240 73ff 	movw	r3, #2047	; 0x7ff
+878001c2:	9301      	str	r3, [sp, #4]
+878001c4:	9b01      	ldr	r3, [sp, #4]
+878001c6:	1e5a      	subs	r2, r3, #1
+878001c8:	9201      	str	r2, [sp, #4]
+878001ca:	2b00      	cmp	r3, #0
+878001cc:	d1fa      	bne.n	878001c4 <delay_1ms+0x8>
+878001ce:	b002      	add	sp, #8
+878001d0:	4770      	bx	lr
+878001d2:	bf00      	nop
+
+878001d4 <delay_ms>:
+878001d4:	b082      	sub	sp, #8
+878001d6:	f240 71ff 	movw	r1, #2047	; 0x7ff
+878001da:	9000      	str	r0, [sp, #0]
+878001dc:	9b00      	ldr	r3, [sp, #0]
+878001de:	1e5a      	subs	r2, r3, #1
+878001e0:	9200      	str	r2, [sp, #0]
+878001e2:	b153      	cbz	r3, 878001fa <delay_ms+0x26>
+878001e4:	9101      	str	r1, [sp, #4]
+878001e6:	9b01      	ldr	r3, [sp, #4]
+878001e8:	1e5a      	subs	r2, r3, #1
+878001ea:	9201      	str	r2, [sp, #4]
+878001ec:	2b00      	cmp	r3, #0
+878001ee:	d1fa      	bne.n	878001e6 <delay_ms+0x12>
+878001f0:	9b00      	ldr	r3, [sp, #0]
+878001f2:	1e5a      	subs	r2, r3, #1
+878001f4:	9200      	str	r2, [sp, #0]
+878001f6:	2b00      	cmp	r3, #0
+878001f8:	d1f4      	bne.n	878001e4 <delay_ms+0x10>
+878001fa:	b002      	add	sp, #8
+878001fc:	4770      	bx	lr
+878001fe:	bf00      	nop
+87800200:	00003441 	andeq	r3, r0, r1, asr #8
+87800204:	61656100 	cmnvs	r5, r0, lsl #2
+87800208:	01006962 	tsteq	r0, r2, ror #18
+8780020c:	0000002a 	andeq	r0, r0, sl, lsr #32
+87800210:	412d3705 	teqmi	sp, r5, lsl #14
+87800214:	070a0600 	streq	r0, [sl, -r0, lsl #12]
+87800218:	09010841 	stmdbeq	r1, {r0, r6, fp}
+8780021c:	12040a02 	andne	r0, r4, #8192	; 0x2000
+87800220:	15011404 	strne	r1, [r1, #-1028]	; 0x404
+87800224:	18031701 	stmdane	r3, {r0, r8, r9, sl, ip}
+87800228:	1a011901 	bne	87846634 <morse_code+0x462a4>
+8780022c:	1c031b02 	stcne	11, cr1, [r3], {2}
+87800230:	22021e01 	andcs	r1, r2, #1, 28
+87800234:	00000001 	andeq	r0, r0, r1
+
+87800238 <led_init>:
+87800238:	2168      	movs	r1, #104	; 0x68
+8780023a:	f44f 723d 	mov.w	r2, #756	; 0x2f4
+8780023e:	f24c 0304 	movw	r3, #49156	; 0xc004
+87800242:	b430      	push	{r4, r5}
+87800244:	f2c0 210e 	movt	r1, #526	; 0x20e
+87800248:	2505      	movs	r5, #5
+8780024a:	f241 04b0 	movw	r4, #4272	; 0x10b0
+8780024e:	f2c0 220e 	movt	r2, #526	; 0x20e
+87800252:	f2c0 2309 	movt	r3, #521	; 0x209
+87800256:	2008      	movs	r0, #8
+87800258:	600d      	str	r5, [r1, #0]
+8780025a:	6014      	str	r4, [r2, #0]
+8780025c:	6018      	str	r0, [r3, #0]
+8780025e:	bc30      	pop	{r4, r5}
+87800260:	4770      	bx	lr
+87800262:	bf00      	nop
+
+87800264 <led_on>:
+87800264:	f44f 4340 	mov.w	r3, #49152	; 0xc000
+87800268:	f2c0 2309 	movt	r3, #521	; 0x209
+8780026c:	681a      	ldr	r2, [r3, #0]
+8780026e:	f022 0208 	bic.w	r2, r2, #8
+87800272:	601a      	str	r2, [r3, #0]
+87800274:	4770      	bx	lr
+87800276:	bf00      	nop
+
+87800278 <led_off>:
+87800278:	f44f 4340 	mov.w	r3, #49152	; 0xc000
+8780027c:	f2c0 2309 	movt	r3, #521	; 0x209
+87800280:	681a      	ldr	r2, [r3, #0]
+87800282:	f042 0208 	orr.w	r2, r2, #8
+87800286:	601a      	str	r2, [r3, #0]
+87800288:	4770      	bx	lr
+8780028a:	bf00      	nop
+8780028c:	00003441 	andeq	r3, r0, r1, asr #8
+87800290:	61656100 	cmnvs	r5, r0, lsl #2
+87800294:	01006962 	tsteq	r0, r2, ror #18
+87800298:	0000002a 	andeq	r0, r0, sl, lsr #32
+8780029c:	412d3705 	teqmi	sp, r5, lsl #14
+878002a0:	070a0600 	streq	r0, [sl, -r0, lsl #12]
+878002a4:	09010841 	stmdbeq	r1, {r0, r6, fp}
+878002a8:	12040a02 	andne	r0, r4, #8192	; 0x2000
+878002ac:	15011404 	strne	r1, [r1, #-1028]	; 0x404
+878002b0:	18031701 	stmdane	r3, {r0, r8, r9, sl, ip}
+878002b4:	1a011901 	bne	878466c0 <morse_code+0x46330>
+878002b8:	1c031b02 	stcne	11, cr1, [r3], {2}
+878002bc:	22021e01 	andcs	r1, r2, #1, 28
+878002c0:	00000001 	andeq	r0, r0, r1
+
+878002c4 <morse_dot>:
+878002c4:	b508      	push	{r3, lr}
+878002c6:	f7ff ffcd 	bl	87800264 <led_on>
+878002ca:	f7ff ff1f 	bl	8780010c <beep_on>
+878002ce:	203c      	movs	r0, #60	; 0x3c
+878002d0:	f7ff ff80 	bl	878001d4 <delay_ms>
+878002d4:	f7ff ffd0 	bl	87800278 <led_off>
+878002d8:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
+878002dc:	f7ff bf20 	b.w	87800120 <beep_off>
+
+878002e0 <morse_line>:
+878002e0:	b508      	push	{r3, lr}
+878002e2:	f7ff ffbf 	bl	87800264 <led_on>
+878002e6:	f7ff ff11 	bl	8780010c <beep_on>
+878002ea:	20b4      	movs	r0, #180	; 0xb4
+878002ec:	f7ff ff72 	bl	878001d4 <delay_ms>
+878002f0:	f7ff ffc2 	bl	87800278 <led_off>
+878002f4:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
+878002f8:	f7ff bf12 	b.w	87800120 <beep_off>
+
+878002fc <morse_gap_in_char>:
+878002fc:	b508      	push	{r3, lr}
+878002fe:	f7ff ffbb 	bl	87800278 <led_off>
+87800302:	f7ff ff0d 	bl	87800120 <beep_off>
+87800306:	2078      	movs	r0, #120	; 0x78
+87800308:	f7ff ff64 	bl	878001d4 <delay_ms>
+8780030c:	f7ff ffb4 	bl	87800278 <led_off>
+87800310:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
+87800314:	f7ff bf04 	b.w	87800120 <beep_off>
+
+87800318 <morse_gap_bet_char>:
+87800318:	b508      	push	{r3, lr}
+8780031a:	f7ff ffad 	bl	87800278 <led_off>
+8780031e:	f7ff feff 	bl	87800120 <beep_off>
+87800322:	f44f 70d2 	mov.w	r0, #420	; 0x1a4
+87800326:	f7ff ff55 	bl	878001d4 <delay_ms>
+8780032a:	f7ff ffa5 	bl	87800278 <led_off>
+8780032e:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
+87800332:	f7ff bef5 	b.w	87800120 <beep_off>
+87800336:	bf00      	nop
+
+87800338 <morse_xfer>:
+87800338:	b570      	push	{r4, r5, r6, lr}
+8780033a:	7804      	ldrb	r4, [r0, #0]
+8780033c:	b31c      	cbz	r4, 87800386 <morse_xfer+0x4e>
+8780033e:	f240 3690 	movw	r6, #912	; 0x390
+87800342:	4605      	mov	r5, r0
+87800344:	f2c8 7680 	movt	r6, #34688	; 0x8780
+87800348:	3c61      	subs	r4, #97	; 0x61
+8780034a:	00e3      	lsls	r3, r4, #3
+8780034c:	eb03 0444 	add.w	r4, r3, r4, lsl #1
+87800350:	5d33      	ldrb	r3, [r6, r4]
+87800352:	4434      	add	r4, r6
+87800354:	2b04      	cmp	r3, #4
+87800356:	d00a      	beq.n	8780036e <morse_xfer+0x36>
+87800358:	b183      	cbz	r3, 8780037c <morse_xfer+0x44>
+8780035a:	2b01      	cmp	r3, #1
+8780035c:	d103      	bne.n	87800366 <morse_xfer+0x2e>
+8780035e:	f7ff ffbf 	bl	878002e0 <morse_line>
+87800362:	f7ff ffcb 	bl	878002fc <morse_gap_in_char>
+87800366:	f814 3f01 	ldrb.w	r3, [r4, #1]!
+8780036a:	2b04      	cmp	r3, #4
+8780036c:	d1f4      	bne.n	87800358 <morse_xfer+0x20>
+8780036e:	f7ff ffd3 	bl	87800318 <morse_gap_bet_char>
+87800372:	f815 4f01 	ldrb.w	r4, [r5, #1]!
+87800376:	2c00      	cmp	r4, #0
+87800378:	d1e6      	bne.n	87800348 <morse_xfer+0x10>
+8780037a:	bd70      	pop	{r4, r5, r6, pc}
+8780037c:	f7ff ffa2 	bl	878002c4 <morse_dot>
+87800380:	f7ff ffbc 	bl	878002fc <morse_gap_in_char>
+87800384:	e7ef      	b.n	87800366 <morse_xfer+0x2e>
+87800386:	bd70      	pop	{r4, r5, r6, pc}
+
+87800388 <__main_from_arm>:
+87800388:	e51ff004 	ldr	pc, [pc, #-4]	; 8780038c <__main_from_arm+0x4>
+8780038c:	8780003d 			; <UNDEFINED> instruction: 0x8780003d
+
+87800390 <morse_code>:
+87800390:	00040100 	andeq	r0, r4, r0, lsl #2
+87800394:	00000000 	andeq	r0, r0, r0
+87800398:	00010000 	andeq	r0, r1, r0
+8780039c:	00040000 	andeq	r0, r4, r0
+878003a0:	00000000 	andeq	r0, r0, r0
+878003a4:	00010001 	andeq	r0, r1, r1
+878003a8:	00000004 	andeq	r0, r0, r4
+878003ac:	00010000 	andeq	r0, r1, r0
+878003b0:	00000400 	andeq	r0, r0, r0, lsl #8
+878003b4:	00000000 	andeq	r0, r0, r0
+878003b8:	00000400 	andeq	r0, r0, r0, lsl #8
+	...
+878003c4:	00040001 	andeq	r0, r4, r1
+878003c8:	00000000 	andeq	r0, r0, r0
+878003cc:	04000101 	streq	r0, [r0], #-257	; 0x101
+	...
+878003d8:	00040000 	andeq	r0, r4, r0
+878003dc:	00000000 	andeq	r0, r0, r0
+878003e0:	00040000 	andeq	r0, r4, r0
+878003e4:	00000000 	andeq	r0, r0, r0
+878003e8:	01000000 	mrseq	r0, (UNDEF: 0)
+878003ec:	00040101 	andeq	r0, r4, r1, lsl #2
+878003f0:	00000000 	andeq	r0, r0, r0
+878003f4:	04010001 	streq	r0, [r1], #-1
+878003f8:	00000000 	andeq	r0, r0, r0
+878003fc:	01000000 	mrseq	r0, (UNDEF: 0)
+87800400:	00040000 	andeq	r0, r4, r0
+87800404:	00000000 	andeq	r0, r0, r0
+87800408:	00040101 	andeq	r0, r4, r1, lsl #2
+8780040c:	00000000 	andeq	r0, r0, r0
+87800410:	00010000 	andeq	r0, r1, r0
+87800414:	00000004 	andeq	r0, r0, r4
+87800418:	00000000 	andeq	r0, r0, r0
+8780041c:	04010101 	streq	r0, [r1], #-257	; 0x101
+87800420:	00000000 	andeq	r0, r0, r0
+87800424:	01000000 	mrseq	r0, (UNDEF: 0)
+87800428:	00040001 	andeq	r0, r4, r1
+8780042c:	00000000 	andeq	r0, r0, r0
+87800430:	01000101 	tsteq	r0, r1, lsl #2
+87800434:	00000004 	andeq	r0, r0, r4
+87800438:	01000000 	mrseq	r0, (UNDEF: 0)
+8780043c:	00000400 	andeq	r0, r0, r0, lsl #8
+87800440:	00000000 	andeq	r0, r0, r0
+87800444:	04000000 	streq	r0, [r0], #-0
+87800448:	00000000 	andeq	r0, r0, r0
+8780044c:	04010000 	streq	r0, [r1], #-0
+	...
+87800458:	04010000 	streq	r0, [r1], #-0
+	...
+87800464:	00040100 	andeq	r0, r4, r0, lsl #2
+87800468:	00000000 	andeq	r0, r0, r0
+8780046c:	04010100 	streq	r0, [r1], #-256	; 0x100
+87800470:	00000000 	andeq	r0, r0, r0
+87800474:	00010000 	andeq	r0, r1, r0
+87800478:	00040100 	andeq	r0, r4, r0, lsl #2
+8780047c:	00000000 	andeq	r0, r0, r0
+87800480:	01010001 	tsteq	r1, r1
+87800484:	00000004 	andeq	r0, r0, r4
+87800488:	01010000 	mrseq	r0, (UNDEF: 1)
+8780048c:	00040000 	andeq	r0, r4, r0
+87800490:	00000000 	andeq	r0, r0, r0
+87800494:	00003441 	andeq	r3, r0, r1, asr #8
+87800498:	61656100 	cmnvs	r5, r0, lsl #2
+8780049c:	01006962 	tsteq	r0, r2, ror #18
+878004a0:	0000002a 	andeq	r0, r0, sl, lsr #32
+878004a4:	412d3705 	teqmi	sp, r5, lsl #14
+878004a8:	070a0600 	streq	r0, [sl, -r0, lsl #12]
+878004ac:	09010841 	stmdbeq	r1, {r0, r6, fp}
+878004b0:	12040a02 	andne	r0, r4, #8192	; 0x2000
+878004b4:	15011404 	strne	r1, [r1, #-1028]	; 0x404
+878004b8:	18031701 	stmdane	r3, {r0, r8, r9, sl, ip}
+878004bc:	1a011901 	bne	878468c8 <morse_code+0x46538>
+878004c0:	1c031b02 	stcne	11, cr1, [r3], {2}
+878004c4:	22021e01 	andcs	r1, r2, #1, 28
+878004c8:	Address 0x00000000878004c8 is out of bounds.
+

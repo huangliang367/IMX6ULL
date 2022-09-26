@@ -3,8 +3,6 @@
 
 void led_init(void)
 {
-    unsigned int val = 0;
-
     word32(IOMUXC_SW_MUX_CTL_PAD_GPIO1_IO03) = 0x5;
     word32(IOMUXC_SW_PAD_CTL_PAD_GPIO1_IO03) = 0x10B0;
     word32(GPIO1_IO3_CFG) = 0x8;

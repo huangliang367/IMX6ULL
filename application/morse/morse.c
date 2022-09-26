@@ -76,7 +76,6 @@ void morse_xfer(char *msg)
     int j = 0;
     unsigned char *morse_ele = 0;
     int idx = 0;
-    MORSE_ELEMENT morse_element = MORSE_END;
 
     while (msg[i] != '\0') {
         val = msg[i];
