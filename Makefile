@@ -19,8 +19,10 @@ SRCDIRS			:= 	project \
 					application/morse \
 
 INCLUDE			:= $(patsubst %, -I %, $(INCDIRS))
+
 SFILES			:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.s))
 CFILES			:= $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
+
 SFILENDIR		:= $(notdir $(SFILES))
 CFILENDIR		:= $(notdir $(CFILES))
 
