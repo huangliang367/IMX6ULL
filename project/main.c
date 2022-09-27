@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[])
 {
-    clock_enable();
+    clk_enable();
     beep_init();
     led_init();
 

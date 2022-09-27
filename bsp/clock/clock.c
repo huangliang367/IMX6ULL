@@ -1,15 +1,15 @@
-#include "commont.h"
+#include "imx6ull.h"
 #include "clock.h"
 
-void clock_enable(void)
+void clk_enable(void)
 {
-    word32(CCM_CCGR0) = 0xFFFFFFFF;
-    word32(CCM_CCGR1) = 0xFFFFFFFF;
-    word32(CCM_CCGR2) = 0xFFFFFFFF;
-    word32(CCM_CCGR3) = 0xFFFFFFFF;
-    word32(CCM_CCGR4) = 0xFFFFFFFF;
-    word32(CCM_CCGR5) = 0xFFFFFFFF;
-    word32(CCM_CCGR6) = 0xFFFFFFFF;
+    CCM->CCGR0 = 0xFFFFFFFF;
+    CCM->CCGR1 = 0xFFFFFFFF;
+    CCM->CCGR2 = 0xFFFFFFFF;
+    CCM->CCGR3 = 0xFFFFFFFF;
+    CCM->CCGR4 = 0xFFFFFFFF;
+    CCM->CCGR5 = 0xFFFFFFFF;
+    CCM->CCGR6 = 0xFFFFFFFF;
 }
 
 void delay_1ms(void)
