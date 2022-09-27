@@ -1,5 +1,6 @@
 CROSS_COMPILE	?= arm-linux-gnueabihf-
 TARGET			?= morse
+OBJ_PATH		:= obj
 
 CC				:= $(CROSS_COMPILE)gcc
 LD				:= $(CROSS_COMPILE)ld
@@ -33,6 +34,11 @@ OBJS			:= $(SOBJS) $(COBJS)
 VPATH			:= $(SRCDIRS)
 
 .PHONY: clean
+
+all : $(OBJ_PATH) $(TARGET).bin
+
+$(OBJ_PATH):
+	@if [ ! -d $(OBJ_PATH) ]; then mkdir $(OBJ_PATH); fi
 
 $(TARGET).bin : $(OBJS)
 	$(LD) -Tproject.lds -o $(TARGET).elf $^
