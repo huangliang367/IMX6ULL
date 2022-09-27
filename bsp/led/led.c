@@ -20,3 +20,11 @@ void led_off(void)
 {
     GPIO1->DR |= (1 << 3);
 }
+
+void led_switch(LED_STATUS status)
+{
+    if (LED_ON == status)
+        GPIO1->DR &= ~(1 << 3);
+    else
+        GPIO1->DR |= (1 << 3);
+}

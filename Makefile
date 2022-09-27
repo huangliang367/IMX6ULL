@@ -1,5 +1,5 @@
 CROSS_COMPILE	?= arm-linux-gnueabihf-
-TARGET			?= morse
+TARGET			?= IMX6ULL
 OBJ_PATH		:= obj
 
 CC				:= $(CROSS_COMPILE)gcc
@@ -11,13 +11,19 @@ INCDIRS			:= 	imx6ull	\
 					bsp/beep \
 					bsp/clock \
 					bsp/led \
+					bsp/gpio \
+					bsp/key \
 					application/morse \
+					application/key \
 
 SRCDIRS			:= 	project \
 					bsp/beep \
 					bsp/clock \
 					bsp/led \
+					bsp/gpio \
+					bsp/key \
 					application/morse \
+					application/key \
 
 INCLUDE			:= $(patsubst %, -I %, $(INCDIRS))
 

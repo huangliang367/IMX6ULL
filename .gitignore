@@ -1,3 +1,7 @@
 imxdownload
 *.dis
 load.imx
+*.bin
+*.elf
+obj/*
+

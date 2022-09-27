@@ -19,3 +19,11 @@ void beep_off(void)
 {
     GPIO5->DR |= (1 << 1);
 }
+
+void beep_switch(BEEP_STATUS status)
+{
+    if (BEEP_ON == status)
+        GPIO5->DR &= ~(1 << 1);
+    else
+        GPIO5->DR |= (1 << 1);
+}
