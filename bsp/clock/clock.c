@@ -12,6 +12,20 @@ void clk_enable(void)
     CCM->CCGR6 = 0xFFFFFFFF;
 }
 
+void imx6ull_clk_init(void)
+{
+    CCM->CCSR &= ~(1 << 8); //osc_clk(24M)
+    CCM->CCSR |= (1 << 2);  //change to step_clk
+
+    CCM_ANALOG->PLL_ARM &= ~(0xFF);
+    CCM_ANALOG->PLL_ARM |= 88;
+    CCM_ANALOG->PLL_ARM |= (1 << 13);
+
+    CCM->CACRR &= ~(0x7 << 0);
+    CCM->CACRR |= 1;
+    CCM->CCSR &= ~(1 << 2);
+}
+
 void delay_1ms(void)
 {
     volatile unsigned int n = 0x7ff;

@@ -5,8 +5,9 @@
 #include "morse.h"
 #include "key_test.h"
 
-static void dev_init(void)
+static void board_init(void)
 {
+    imx6ull_clk_init();
     clk_enable();
     beep_init();
     led_init();
@@ -14,12 +15,8 @@ static void dev_init(void)
 
 int main(int argc, char *argv[])
 {
-    dev_init();
-
+    board_init();
     morse_xfer("helloworld");
-    delay_ms(1000);
-    morse_xfer("huangliang");
-
     key_test();
 
     return 0;
